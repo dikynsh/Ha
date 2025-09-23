@@ -1,0 +1,367 @@
+/* General */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("ChatGPT Image 21 Agu 2025, 21.46.17.png") no-repeat center center fixed;
+  background-size: cover;   /* gambar penuh layar */
+  color: #333;
+  overflow-x: hidden;
+}
+
+
+
+/* Banner */
+.banner {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.popup-banner {
+  max-width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popUp 1.5s forwards;
+  border-bottom: 5px solid #ddd;
+}
+
+@keyframes popUp {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gallery */
+.gallery {
+  margin: 20px;
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.image-grid img {
+  width: 160px;
+  height: 150px;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateY(40px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.image-grid img:hover {
+  transform: scale(1.1);
+}
+
+/* Animasi arah muncul */
+.pop-img.left {
+  animation: slideLeft 1s forwards;
+}
+
+.pop-img.right {
+  animation: slideRight 1s forwards;
+}
+
+@keyframes slideLeft {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal (Fullscreen Pop Up) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  border-radius: 10px;
+}
+
+#caption {
+  margin-top: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+  white-space: normal;   /* Supaya <br> bisa bekerja */
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+
+/* Tombol Close */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #ff5050;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  background: #f5f5f5;
+  margin-top: 40px;
+}
+.video-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+.video-slider .slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  max-height: 223px;
+  object-fit: cover;
+}
+
+/* Indikator */
+.slider-indicators {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.slider-indicators .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slider-indicators .dot.active {
+  background-color: #333;
+}
+#bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;   /* gambar isi penuh layar */
+  z-index: -1;         /* di belakang semua konten */
+  pointer-events: none; /* biar tidak menghalangi klik/scroll */
+}
+/* Intro Video Overlay */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#intro-overlay video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Saat intro aktif → hentikan semua animasi di halaman */
+body.freeze *:not(#intro-overlay):not(#intro-overlay *) {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+/* Body tidak bisa scroll */
+.noscroll {
+  overflow: hidden;
+  height: 100vh;
+}
+/* Hentikan semua animasi/transisi ketika body punya class freeze */
+body.freeze *:not(#intro-overlay):not(#intro-overlay *) {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+html, body {
+  touch-action: pan-x pan-y;
+}
+/* ================== INTRO OVERLAY ================== */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: red; /* latar belakang merah */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+.intro-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: yellow;
+  opacity: 0;
+  margin: 0;           /* buang jarak default h1 */
+  animation: fadeInText 2s forwards;
+}
+
+.intro-subtitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: yellow;
+  margin: 8px 0 0 0;   /* kasih jarak kecil antara atas-bawah */
+  opacity: 0;
+  animation: fadeInText 2s forwards;
+  animation-delay: 3s;
+}
+
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+}
+
+body.freeze *:not(#intro-overlay):not(#intro-overlay *) {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
+/* ===== Animasi Huruf "Cacing Merayap" ===== */
+.intro-title span,
+.intro-subtitle span {
+  display: inline-block;
+  color: yellow;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(100%) scale(0.8) rotate(-10deg);
+  animation: wormWave 0.6s forwards;
+  animation-delay: calc(var(--i) * 0.15s); /* urutan otomatis */
+}
+
+/* Ukuran teks */
+.intro-title span { font-size: 30px; }
+.intro-subtitle span { font-size: 20px; }
+
+/* Keyframes worm */
+@keyframes wormWave {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8) rotate(-10deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10%) scale(1.05) rotate(5deg);
+  }
+  70% {
+    transform: translateY(5%) scale(0.98) rotate(-3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+/* ===== Efek Kilatan Shine ===== */
+.shine-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.shine-text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.7), transparent);
+  transform: skewX(-25deg);
+  animation: shineAnim 1s forwards;
+  animation-delay: 4s; /* kilatan mulai setelah huruf selesai */
+}
+
+@keyframes shineAnim {
+  from { left: -100%; }
+  to { left: 120%; }
+}
+/* Spasi antar kata di animasi intro */
+.space {
+  display: inline-block;
+  width: 12px;   /* ubah sesuai kebutuhan, makin besar makin jauh */
+}
+
+/* Kolom Pencarian */
+.search-container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+#searchInput {
+  width: 250px;       /* ubah sesuai kebutuhan */
+  max-width: 80%;     /* biar responsive */
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #ffcc00;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.7);
+}
